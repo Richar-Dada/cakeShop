@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env PORT=7777 NODE_ENV=dev nodemon index.js",
+    "dist": "cross-env PORT=8888 NODE_ENV=dist nodemon index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "xtemplate": "^4.5.1",
+    "xtpl": "^3.2.0"
+  }
 }
