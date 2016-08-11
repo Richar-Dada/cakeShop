@@ -15,7 +15,7 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <div class="input-group-addon">名称：</div>
-                        <input type="text" class="form-control" name="vname" placeholder="请输入视频名称" value="{{ vname }}" >
+                        <input type="text" class="form-control" name="name" placeholder="请输入蛋糕名称" value="{{ name }}" >
                     </div>
                 </div>
                 <div class="col-md-1">
@@ -29,13 +29,14 @@
     </div>
 </div>
 
-<table class="table table-bordered">
+<table class="table table-bordered .table-condensed">
     <tr>
         <th>编号</th>
         <th>蛋糕名称</th>
         <th>价格</th>
         <th>关键字</th>
         <th>描述</th>
+        <th>图片</th>
         <th>操作</th>
     </tr>
 
@@ -43,57 +44,22 @@
     <tr>
         <td>{{ xindex + 1 }}</td>
         <td>{{ this.name }}</td>
-        <td>{{ this.scope }}</td>
+        <td>{{ this.price }}</td>
         <td>{{ this.keyword }}</td>
-        <td>{{ this.filepath }}</td>
+        <td>{{ this.content }}</td>
+        <td><img src="../upload/{{ this.filepath }}" style="width:100px;"></td>
         <td>
-            <a href="javascript:;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" onClick="uploadFile('{{this._id}}')">上传视频</a> |
             <a href="/admin/edit/{{this._id}}" class="btn btn-info btn-sm">编辑</a> |
             <a href="/admin/del/{{ this._id }}" class="btn btn-danger btn-sm">删除</a>
-            {{#if( this.__v === 1 )}}
-            | <a href="/play/{{ this._id }}" class="btn btn-success btn-sm">播放</a>
-            {{/if}}
+            
         </td>
     </tr>
 
     {{~/each}}
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">上传视频</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="/admin/upload" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="" id="idInp"/>
-                        <input type="file" name="mp4file"/>
-                        <input type="submit" id="fileInput" style="display: none"/>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="uploadBtn">上传</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </table>
 
 {{/block}}
 
-<script>
-    function uploadFile(id){
-        $('#idInp').val(id);
 
-    }
-
-    $(function(){
-        $('#uploadBtn').click(function(){
-            $('#fileInput').click();
-        });
-
-    })
-</script>

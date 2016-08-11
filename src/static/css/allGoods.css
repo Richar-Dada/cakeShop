@@ -1,0 +1,45 @@
+/* goodlist begin */
+.goodList{
+	margin-top: 0.555556rem;
+	padding: 0 0.277778rem;
+}
+
+.good-item{
+	margin-bottom: 0.555556rem;
+	background: #fff;
+}
+
+.good-item a{
+	display: block;
+	
+}
+
+.good-item a img{
+	width: 5.0rem;
+	height: 5.0rem;
+	float: left;
+}
+
+.good-item .good-info{
+	overflow: hidden;
+	height: 5.0rem;
+	padding-left: 0.555556rem;
+}
+
+.good-item .good-info p:nth-child(1){
+	font-size: 0.777778rem;
+	line-height: 1.333333rem;
+	padding-right: 0.277778rem;
+	height: 2.5rem;
+	overflow: hidden;
+	text-overflow:ellipsis;;
+	
+}
+
+.good-item .good-info p:nth-child(2){
+	font-size: 1.111111rem;
+	color: #f00;
+	height: 2.5rem;
+	line-height: 2.5rem;
+}
+/* goodlist end */

@@ -1,7 +1,135 @@
-*{
-    margin: 0;
-    padding: 0;
+@charset 'utf-8';
+
+
+//轮播图简单设置
+.swiper-slide a{
+	display: inline-block;
+	
 }
-body{
-    background: #000;
+.swiper-slide a img{
+	width: 100%;
+}
+
+/* newGoods begin */
+.newGoods{
+	border-bottom: 1px solid #ccc;
+	border-top:1px solid #ccc;
+	margin: 10px 0;
+	background: #fff;
+}
+
+.tit{
+	height: 1.833333rem;
+	line-height: 1.833333rem;
+	padding: 0 0.555556rem;
+}
+
+.tit h2{
+	font-weight: normal;
+	font-size: 0.888889rem;
+}
+
+.newGoods-content{
+	display: -webkit-box;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.newGoods-content a{
+	display: block;
+	-webkit-box-flex:1;
+	
+	
+}
+
+.newGoods-content a img{
+	width:4.111111rem;
+}
+
+.newGoods-content a p{
+	padding: 0 1.111111rem;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+.newGoods-content a:nth-child(2){
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+/* newGoods end */
+
+/* hotGoods begin */
+.hotGoods{
+	margin: 0 2px;
+}
+
+.hotGoods-content{
+	
+}
+
+.hotGoods-content li{
+	width: 50%;
+	float: left;
+	margin-bottom: 4px;
+}
+
+.hotGoods-content li a{
+	border: 1px solid #ccc;
+	margin: 0 2px;
+	display: block;
+}
+
+.hotGoods-content li a img{
+	width: 100%;
+}
+
+.hotGoods-content li a p{
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+	
+	padding: 0.277778rem 0 0 0.555556rem;
+}
+
+.hotGoods-content li a p:nth-of-type(2){
+	color: #f00;
+	font-size: 0.888889rem; 
+	padding-bottom: 0.555556rem;
+	font-weight: bold;
+}
+
+.hotGoods .moreBtn{
+	background: #fff;
+	display: block;
+	text-align: center;
+	padding: 0.555556rem 0;
+	margin: 0.277778rem 0;
+	color: #999;
+}
+/* hotGoods end */
+
+
+
+.shopCar{
+	display: block;
+	position: fixed;
+	left: 0.277778rem;
+	bottom:1.111111rem;
+	width: 2.777778rem;
+	height: 2.777778rem;
+	border-radius: 100%;
+	background: #DB3652;
+	text-align: center;
+	line-height: 2.777778rem;
+}
+
+.ico-shopCar{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	background: url('../images/mix-icon.png') no-repeat;
+	background-size: 300px 300px;
+	background-position: 0 -50px;
+	vertical-align: middle;
 }

@@ -1,0 +1,98 @@
+/* user-info begin */
+.user-name{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	
+}
+
+.user-name img{
+	display: block;
+	width: 100%;
+}
+
+.user-name .info-item{
+	position: absolute;
+	width: 6.111111rem;
+	height: 2.777778rem;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	font-size: 1.333333rem;
+	color:#DB3652;
+
+}
+
+.user-name .info-item a{
+	color: #eee;
+	display: inline-block;
+	
+}
+
+.wait-play{
+	display: -webkit-box;
+	background: #fff;
+}
+
+.wait-play a{
+	text-align: center;
+	display: block;
+	-webkit-box-flex:1;
+	height: 2.5rem;
+	border-bottom: 1px solid #ccc;
+
+}
+
+.wait-play a:nth-child(1){
+	border-right: 1px solid #ccc;
+}
+
+.wait-play a p{
+	height: 1.111111rem;
+	line-height: 1.111111rem;
+	font-size: 0.777778rem;
+}
+
+.toolbar-list{
+	margin: 0.277778rem 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	background: #fff;
+	padding: 0.277778rem 0;
+}
+
+.toolbar-list li{
+	padding: 0.277778rem 0.277778rem;
+}
+
+.toolbar-list a{
+	display: block;
+}
+
+.toolbar-list a img{
+	width: 1.388889rem;
+	height: 1.388889rem;
+	display: block;
+	float: left;
+
+}
+
+.toolbar-list a span{
+	padding-left: 1.111111rem;
+	overflow: hidden;
+	font-size: 0.777778rem;
+	line-height: 1.666667rem;
+	display: inline-block;
+	
+}
+
+.toolbar-list a .arrow{
+	font-family: 'sunsim';
+	padding-right: 0.555556rem;
+	font-weight: bold;
+	font-size: 0.888889rem;
+	color: #999;
+}
+/* user-info end */

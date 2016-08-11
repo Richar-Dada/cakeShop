@@ -1,0 +1,196 @@
+/*reset css*/
+*,
+::before,
+::after{
+    padding: 0;
+    margin: 0;
+    /*需要针对移动设备做设置*/
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body{
+    font-size: 0.5rem;
+    font-family: "microsoft YaHei","sans-serif";/*使用移动端默认的字体*/
+    color: #333;
+    max-width: 640px;
+    background: #F7F7F7;
+}
+a{
+    color: #333;
+    text-decoration: none;
+}
+a:hover{
+    color: #333;
+
+}
+ol,ul{
+    list-style: none;
+}
+input,textarea{
+    border: none;
+    outline: none;
+    resize: none;
+    /*但是在移动设备当中 有一些浏览器是会有自己的默认样式*/
+    -webkit-appearance: none;
+    appearance: none;
+}
+/*common css*/
+.fr{
+    float: right;
+}
+.fl{
+    float: left;
+}
+.clearfix::before,
+.clearfix::after{
+    content: "";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+@media screen and (min-width: 320px) {
+    html {font-size: 14px;}
+}
+ 
+@media screen and (min-width: 360px) {
+    html {font-size: 16px;}
+}
+ 
+@media screen and (min-width: 400px) {
+    html {font-size: 18px;}
+}
+ 
+@media screen and (min-width: 440px) {
+    html {font-size: 20px;}
+}
+ 
+@media screen and (min-width: 480px) {
+    html {font-size: 22px;}
+}
+ 
+@media screen and (min-width: 640px) {
+    html {font-size: 28px;}
+}
+
+/* header begin */
+.header{
+    width: 100%;
+    height: 2.5rem;
+    background: #DB3652;
+}
+
+.header-wrap{
+    padding: 0 0.555556rem 0 0.833333rem;
+    height: 2.5rem;
+    line-height: 2.5rem;    
+}
+
+.header-logo{
+    height: 2.5rem;
+}
+
+.header-logo a{
+    color: #fff;
+    font-size: 1.444444rem;
+    font-weight: bold;
+    font-family: 'simsun';
+}
+
+.header-toolbar{
+    height:2.5rem;
+}
+
+.header-toolbar-btn{
+    display: inline-block;
+    padding: 0 0.444444rem;
+    height: 100%;
+}
+
+.header-toolbar-btn .ico{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('../images/mix-icon.png') no-repeat;
+    background-size: 300px 300px;
+    vertical-align: middle;
+}
+
+.header-toolbar-btn .ico-search{
+    background-position: 0 -25px;
+}
+
+.header-toolbar-btn .ico-user{
+    background-position: -25px -25px;
+}
+
+.header-wrap .goBackBtn{
+    padding: 0.277778rem 0.555556rem;
+    color: #fff;
+    font:bold 1.666667rem/2.222222rem 'simsun';
+    position: absolute;
+    left: 0.277778rem;
+    top: 0;
+    margin: auto 0;
+}
+
+.header-wrap{
+    text-align: center;   
+}
+
+.header-wrap span{
+    font-size: 1.111111rem;
+    color: #fff;
+}
+
+/* header end */
+
+/* nav begin */
+.nav-wrap{
+    width: 100%;
+    height: 2.222222rem;
+    display: -webkit-box;
+    background: #fff;
+}
+
+.nav-wrap li{
+    text-align: center;
+    -webkit-box-flex:1;
+    height: 100%;
+}
+
+.nav-wrap li a{
+    margin: 0 auto;
+    display: inline-block;
+    height: 100%;
+    line-height: 2.222222rem;
+}
+
+.nav-wrap li a span{
+    display: inline-block;
+    height: 100%;
+    font-size: 0.777778rem;
+}
+
+.nav-wrap .active a{
+    color: #DB3652;
+}
+
+.nav-wrap .active a span{
+    border-bottom: 2px solid #DB3652;
+}
+/* nav end */
+
+/* footer begin */
+.footer{
+    background: #fff;
+    padding: 1.111111rem 0;
+}
+
+.footer p{
+    text-align: center;
+    padding: 0.277778rem 0;
+}
+/* footer end */
