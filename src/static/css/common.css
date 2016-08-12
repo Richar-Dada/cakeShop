@@ -108,6 +108,12 @@ input,textarea{
     padding: 0 0.444444rem;
     height: 100%;
 }
+.header-toolbar-btn .userInfo{
+    font-size: 1.111111rem;
+    color: #fff;
+    font-style: normal;
+    vertical-align: middle;
+}
 
 .header-toolbar-btn .ico{
     display: inline-block;

@@ -70,7 +70,7 @@
 	</div>
 	<div class="newGoods-content">
 		{{#each(newData)~}}
-		<a href="{{this._id}}">
+		<a href="/detail/{{this._id}}">
 			<img src="upload/{{this.filepath}}">
 			<p>{{this.name}}</p>
 		</a>
@@ -88,7 +88,7 @@
 	<ul class="hotGoods-content clearfix">
 	{{#each(data)~}}
 		<li>
-			<a href="{{this._id}}">
+			<a href="/detail/{{this._id}}">
 				<img src="upload/{{this.filepath}}">
 				<p>{{this.name}}</p>
 				<p>{{this.price}}</p>

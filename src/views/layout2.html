@@ -47,4 +47,12 @@
 	<!-- shopCar end -->
 </body>
 </html>
-
+<script type="text/javascript">
+	window.onload = function(){
+		var sname = '{{sName}}';
+		if(sname){
+			var userBtn = document.querySelector('.userPageBtn');
+			userBtn.innerHTML = '<i class="userInfo">'+sname+'</i>';
+		}
+	}
+</script>

@@ -15,6 +15,8 @@ let app = express();
 //连接数据库
 mongoose.connect('mongodb://localhost/cakeShop');
 require('./models/adminModel.js');
+require('./models/accountModel.js');
+require('./models/orderModel.js');
 
 
 //设置模板引擎
@@ -24,6 +26,15 @@ app.engine('html',xtpl.renderFile);
 
 //设置bodyParser中间件，用来解析上传的数据
 app.use(bodyParser());
+
+//设置session中间间
+//使用第三方中间件 express-session 来进行状态管理
+const expressSession = require('express-session');
+app.use(expressSession({
+  secret: 'richar', //加密的秘钥
+  resave: false,  //将来的扩展参数，现在默认设置为false即可
+  saveUninitialized: true
+}));
 
 //配置静态资源文件夹
 app.use(express.static(path.join(__dirname,'./static')));

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>商品详情</title>
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<link rel="stylesheet" type="text/css" href="../css/detail.css">
+</head>
+<body>
+	<header class="header">
+		<div class="header-wrap clearfix">
+			<a href="javascript:history.go(-1);" class="goBackBtn">&lt;</a>
+			<span>商品详情</span>
+		</div>
+	</header>
+	
+	<!-- detail begin -->
+	<section class="detail">
+		<div class="img-box">
+			<img src="/upload/{{data.filepath}}">
+		</div>
+		<div class="cake-info">
+			<h2 class="price">{{data.price}}</h2>
+			<p class="cake-name">{{data.name}}</p>
+			<strong>简介：</strong><span>{{data.content}}</span>
+		</div>
+		<div class="btn-group">
+			<a href="#">加入购物车</a>
+			<a href="javascript:;" class="buyBtn">立即购买</a>
+		</div>	
+	</section>
+	<!-- detail end -->
+	
+	<!-- footer begin -->
+	<footer class="footer">
+		<p>时尚·美味·健康</p>
+		<p>一条介于平凡与不平凡之间的蛋糕街</p>
+	</footer>
+	<!-- footer end -->
+</body>
+</html>
+<script type="text/javascript" src="../bowersrc/zepto/zepto.min.js"></script>
+<script type="text/javascript">
+	$('.buyBtn').click(function(){
+		$.get('/buy/{{data._id}}',{},function(data){
+			if(data.status == 1){
+				window.location = '/orderList';
+			}else{
+				alert(data.message);
+				window.location = '/account/login';
+			}
+
+		},'json');
+	});
+	
+</script>

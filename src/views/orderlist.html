@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>订单列表</title>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/orderList.css">
+</head>
+<body>
+	<header class="header">
+		<div class="header-wrap clearfix">
+			<a href="javascript:history.go(-1);" class="goBackBtn">&lt;</a>
+			<span>订单列表</span>
+		</div>
+	</header>
+	<!-- selectbar begin -->
+	<ul class="selectbar">
+		<li class="active">
+			<a href="#">全部</a>
+		</li>
+		<li>
+			<a href="#">待付款</a>
+		</li>
+		<li>
+			<a href="#">已完成</a>
+		</li>
+
+	</ul>
+	<!-- selectbar end -->
+	<section>
+		<div class="cart-list">
+			{{{#each(data)}}}
+			<div class="cart-item clearfix">
+				
+				<img src="/upload/{{this.filepath}}">
+				<div class="good-info">
+					<p>{{this.name}}</p>
+					<p>交易完成</p>
+					<span class="delBtn"></span>
+				</div>
+			</div>
+			{{{/each}}}
+		</div>
+	</section>
+	<!-- footer begin -->
+	<footer class="footer">
+		<p>时尚·美味·健康</p>
+		<p>一条介于平凡与不平凡之间的蛋糕街</p>
+	</footer>
+	<!-- footer end -->
+</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		//选中的商品，前面变成选中状态
+		var checkboxArr = document.querySelectorAll('.checkbox');
+		for(var i=0;i<checkboxArr.length;i++){
+			checkboxArr[i].onclick = function(){
+				this.setAttribute('checked','true');
+			}
+		}
+
+		//删除商品
+		var delBtnArr = document.querySelectorAll('.delBtn');
+		for(var i=0;i<delBtnArr.length;i++){
+			delBtnArr[i].onclick = function(){
+				var result = confirm('确定要删除？');
+				if(){
+					
+				}
+			}
+		}
+	}
+</script>

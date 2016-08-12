@@ -1,0 +1,39 @@
+/* detail begin */
+.img-box img{
+	width: 100%;
+}
+
+.cake-info{
+	padding: 0 0.555556rem;
+	font-size: 0.777778rem;
+}
+
+.cake-info .price{
+	font-size: 1.111111rem;
+	color: #f00;
+	padding: 0.555556rem 0;
+}
+
+.cake-info .cake-name{
+	font-size: 0.888889rem;
+	padding-bottom: 0.555556rem;
+}
+
+.btn-group{
+	margin-top: 0.555556rem;
+	display: -webkit-box; 
+	text-align: center;
+	
+}
+
+.btn-group a{
+	display: block;
+	-webkit-box-flex:1;
+	margin: 0.555556rem 10%;
+	height: 2.222222rem;
+	line-height: 2.222222rem;
+	background: #FE435D;
+	color: #fff;
+	font-size: 0.888889rem;
+}
+/* detail end */
