@@ -23,10 +23,10 @@
 		<div class="cake-info">
 			<h2 class="price">{{data.price}}</h2>
 			<p class="cake-name">{{data.name}}</p>
-			<strong>简介：</strong><span>{{data.content}}</span>
+			<strong>简介：</strong><span class="content">{{data.content}}</span>
 		</div>
 		<div class="btn-group">
-			<a href="#">加入购物车</a>
+			<a href="javascript:;" class="shopCarBtn">加入购物车</a>
 			<a href="javascript:;" class="buyBtn">立即购买</a>
 		</div>	
 	</section>
@@ -42,6 +42,31 @@
 </html>
 <script type="text/javascript" src="../bowersrc/zepto/zepto.min.js"></script>
 <script type="text/javascript">
+	//加入到购物车功能模块
+	//1、先从localStroage获取购物车已存在的信息
+	$('.shopCarBtn').click(function(){
+		var id = '{{data._id}}';
+		var price = $('.price').text();
+		var cname = $('.cake-name').text();
+		var content = $('.content').text();
+		var filepath = $('.img-box img').attr('src').split('/')[2];
+		var sname = sessionStorage.getItem('sname');
+		var newInfo = JSON.stringify({"id":id,"price":price,"name":cname,"filepath":filepath,"content":content});
+		if(sname){
+			var shopInfo = localStorage.getItem(sname);
+			//2、把新的商品添加到localStroage中
+
+			shopInfo = shopInfo + ';' + newInfo;
+			localStorage.setItem(sname,shopInfo);
+			alert('成功加入购物车');
+		}else{
+			alert('请先登录');
+			window.location = "/account/login";
+		}
+		
+	});
+	
+	//立即购买功能模块
 	$('.buyBtn').click(function(){
 		$.get('/buy/{{data._id}}',{},function(data){
 			if(data.status == 1){

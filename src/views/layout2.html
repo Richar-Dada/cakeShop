@@ -41,7 +41,7 @@
 	<!-- footer end -->
 
 	<!-- shopCar begin -->
-	<a href="#" class="shopCar">
+	<a href="/shopCar" class="shopCar">
 		<i class="ico ico-shopCar"></i>
 	</a>
 	<!-- shopCar end -->
@@ -50,6 +50,7 @@
 <script type="text/javascript">
 	window.onload = function(){
 		var sname = '{{sName}}';
+		sessionStorage.setItem('sname',sname);
 		if(sname){
 			var userBtn = document.querySelector('.userPageBtn');
 			userBtn.innerHTML = '<i class="userInfo">'+sname+'</i>';

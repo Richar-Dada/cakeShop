@@ -16,14 +16,14 @@
 	</header>
 	<!-- selectbar begin -->
 	<ul class="selectbar">
-		<li class="active">
-			<a href="#">全部</a>
+		<li >
+			<a href="/orderList">全部</a>
 		</li>
 		<li>
-			<a href="#">待付款</a>
+			<a href="/orderListPayment">待付款</a>
 		</li>
 		<li>
-			<a href="#">已完成</a>
+			<a href="/orderListConfrimRec">待收货</a>
 		</li>
 
 	</ul>
@@ -36,8 +36,25 @@
 				<img src="/upload/{{this.filepath}}">
 				<div class="good-info">
 					<p>{{this.name}}</p>
+					{{#if( this.isPlay==="0" )}}
+					<p>待付款</p>
+					{{elseif (this.isRecevied==="0")}}
+					<p>待收货</p>
+					{{else}}
 					<p>交易完成</p>
-					<span class="delBtn"></span>
+					{{/if}}
+					<div class="btn-group">
+						{{#if( this.isPlay==="0" )}}
+						<a href="javascript:;" class="payment" alt="{{this._id}}">去付款</a>
+						
+						{{elseif (this.isRecevied==="0")}}
+						<a href="javascript:;" class="confirmRec" alt="{{this._id}}">确认收货</a>
+						{{else}}
+						
+						{{/if}}
+						
+					</div>
+					<span class="delBtn" alt="{{this._id}}"></span>
 				</div>
 			</div>
 			{{{/each}}}
@@ -51,8 +68,20 @@
 	<!-- footer end -->
 </body>
 </html>
+<script type="text/javascript" src="../bowersrc/zepto/zepto.min.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
+		//控制导航栏的高亮
+		var liArr = $('.selectbar li');
+		
+		if(window.location.toString().indexOf('Payment') != -1){
+			$(liArr[1]).addClass('active');
+		}else if(window.location.toString().indexOf('ConfrimRec') != -1){
+			$(liArr[2]).addClass('active');
+		}else if(window.location.toString().indexOf('orderList')){
+			$(liArr[0]).addClass('active');
+		}
+
 		//选中的商品，前面变成选中状态
 		var checkboxArr = document.querySelectorAll('.checkbox');
 		for(var i=0;i<checkboxArr.length;i++){
@@ -63,12 +92,39 @@
 
 		//删除商品
 		var delBtnArr = document.querySelectorAll('.delBtn');
+		
 		for(var i=0;i<delBtnArr.length;i++){
 			delBtnArr[i].onclick = function(){
 				var result = confirm('确定要删除？');
-				if(){
-					
+				if(result){
+					$.get('/delOrder',{id:$(this).attr('alt')},function(data){
+						alert(data.message);
+						window.location = window.location;
+					},'json');
 				}
+			}
+		}
+
+		//去付款功能
+		var paymentArr = $('.payment');
+		for(var i=0;i<paymentArr.length;i++){
+			paymentArr[i].onclick = function(){
+				$.get('/payment',{id:$(this).attr('alt')},function(data){
+					alert(data.message);
+					window.location = window.location;
+				},'json');
+			}
+		}
+
+		//确认收货
+		var confirmRecArr = $('.confirmRec');
+		for(var i=0;i<confirmRecArr.length;i++){
+			confirmRecArr[i].onclick = function(){
+				$.get('/confirmRec',{id:$(this).attr('alt')},function(data){
+
+					alert(data.message);
+					window.location = window.location;
+				},'json');
 			}
 		}
 	}

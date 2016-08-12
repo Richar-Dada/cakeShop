@@ -16,56 +16,21 @@
 	</header>
 	<section>
 		<div class="cart-list">
-			<div class="cart-item">
-				<input type="checkbox" name="" class="checkbox">
-				<img src="images/cake.png">
-				<div class="good-info">
-					<p>Black and White Chocolate Mousse 黑白巧克力慕斯</p>
-					<p>￥69.00</p>
-					<span class="delBtn"></span>
-				</div>
-			</div>
-			<div class="cart-item">
-				<input type="checkbox" name="" class="checkbox">
-				<img src="images/cake.png">
-				<div class="good-info">
-					<p>Black and White Chocolate Mousse 黑白巧克力慕斯</p>
-					<p>￥69.00</p>
-					<span class="delBtn"></span>
-				</div>
-			</div>
-			<div class="cart-item">
-				<input type="checkbox" name="" class="checkbox">
-				<img src="images/cake.png">
-				<div class="good-info">
-					<p>Black and White Chocolate Mousse 黑白巧克力慕斯</p>
-					<p>￥69.00</p>
-					<span class="delBtn"></span>
-				</div>
-			</div>
-			<div class="cart-item">
-				<input type="checkbox" name="" class="checkbox">
-				<img src="images/cake.png">
-				<div class="good-info">
-					<p>Black and White Chocolate Mousse 黑白巧克力慕斯</p>
-					<p>￥69.00</p>
-					<span class="delBtn"></span>
-				</div>
-			</div>
+			<p style="text-align: center;">购物车是空的！</p>
 		</div>
 	</section>
 	<footer class="footer">
 		<div class="footer-wrap">
 			<div class="footer-l">
 				<span class="footer-l-cont">
-					<input type="checkbox" name="" class="checkbox">
+					<input type="checkbox" name="" class="checkbox all-checkbox">
 					<span>全选</span>
 				</span>
 				
 			</div>
 			<div class="footer-m">
 				<p>商品金额总计</p>
-				<p>￥69.00</p>
+				<p class="all-price">￥0.00</p>
 			</div>
 			<div class="footer-r">
 				<span class="footer-r-cont">
@@ -77,25 +42,103 @@
 	</footer>
 </body>
 </html>
+<script type="text/javascript" src="./js/template-native.js"></script>
+<script id="test" type="text/template">
+	<%for (var i=0;i<data.length;i++) {%>
+	<div class="cart-item">
+		<input type="checkbox" name="" class="checkbox checkBtn">
+		<img src="/upload/<%= data[i].filepath %>"> 
+		<div class="good-info">
+			<p><%= data[i].name %></p>
+			<p class="price"><%= data[i].price %></p>
+			<span class="delBtn"></span>
+		</div>
+	</div>
+	<%}%>
+</script>
+<script type="text/javascript" src="/bowersrc/zepto/zepto.min.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
+		//把存储在localStorage的信息取出来，渲染到页面上
+		var shopCarInfo = localStorage.getItem(sessionStorage.getItem('sname'));
+		data = JSON.parse('['+shopCarInfo.split(/;+/g).slice(1).toString()+']');
+		
+		console.log(data);
+		var html = template('test', {data:data});
+		document.querySelector('.cart-list').innerHTML = html;
 		//选中的商品，前面变成选中状态
 		var checkboxArr = document.querySelectorAll('.checkbox');
 		for(var i=0;i<checkboxArr.length;i++){
 			checkboxArr[i].onclick = function(){
-				this.setAttribute('checked','true');
+
+				if(this.getAttribute('checked')){
+					this.setAttribute('checked','');
+				}else{
+					this.setAttribute('checked','true');
+				}
+				caclMoney();
+				
 			}
 		}
 
 		//删除商品
 		var delBtnArr = document.querySelectorAll('.delBtn');
 		for(var i=0;i<delBtnArr.length;i++){
-			delBtnArr[i].onclick = function(){
-				var result = confirm('确定要删除？');
-				if(){
-					
+			delBtnArr[i].onclick = (function(i){
+				return function(){
+					var result = confirm('确定要删除？');
+					data.splice(i,1);
+					localStorage.setItem(sessionStorage.getItem('sname'),'null;'+(JSON.stringify(data).slice(1,-1)));
+					window.location = '/shopCar';
 				}
-			}
+			})(i)
 		}
+
+		//全选功能
+		
+		var flag = 0;
+		$('.all-checkbox').click(function(){
+			if(flag == 0){
+				$('.checkBtn').attr('checked','true');
+				flag = 1;
+			}else{
+				$('.checkBtn').attr('checked','');
+				flag = 0;
+			}
+			caclMoney();	
+		});
+		
+		//计算钱
+		function caclMoney(){
+			var result = 0;
+			var priceArr = $('.checkBtn[checked="true"]').siblings('.good-info').children('.price');
+			for(var i=0;i<priceArr.length;i++){
+
+				result += parseInt(priceArr[i].innerText.slice(1));
+				console.log();
+			}
+			$('.all-price').text('￥'+result);
+		}
+
+		//统计哪个商品被选中，添加到订单中
+		$('.countBtn').click(function(){
+			var postData = [];
+			var checkBtnArr = $('.checkBtn');
+			for(var i=0;i<checkBtnArr.length;i++){
+				if(checkBtnArr[i].getAttribute('checked')){
+					postData.push(data[i]);
+					data.splice(i,1);
+				};
+			}
+			//发送ajax把数据传送到后台
+			$.post('/buy',{data:postData},function(data){
+				alert(data.message);
+				window.location = '/orderList';
+			},'json');
+			//把选中的商品删除掉
+			localStorage.setItem(sessionStorage.getItem('sname'),'null;'+(JSON.stringify(data).slice(1,-1)));
+			
+		});
+		
 	}
 </script>

@@ -2,6 +2,8 @@
 
 const path = require('path');
 const mongoose = require('mongoose');
+const url = require('url');
+const querystring = require('querystring');
 
 let adminModel = mongoose.model('adminModel');
 let orderModel = mongoose.model('orderModel');
@@ -56,12 +58,14 @@ exports.allGoods = (req,res)=>{
 
 //响应/shopCar请求
 exports.shopCar = (req,res)=>{
-
+	res.render(path.join(__dirname,'../views/shopCar.html'),{},(err,content)=>{
+		res.end(content);
+	})
+	
 }
 
 //响应/user请求
 exports.user = (req,res)=>{
-	console.log(1);
 	if(req.session.name){
 		res.render(path.join(__dirname,'../views/user.html'),{sName:req.session.name},(err,content)=>{
 			if(err){
@@ -138,9 +142,31 @@ exports.buy = (req,res)=>{
 				let result = JSON.stringify({"status":1,"message":"到订单中心付款"});
 				res.end(result);
 			});
-		});
+		});	
+	}
+}
 
-		
+exports.buyPost = (req,res)=>{
+	let data = req.body.data;
+	for(let i=0;i<data.length;i++){
+		orderModel.create({
+				name : data[i].name,
+				price : data[i].price,
+				content : data[i].content,
+				filepath : data[i].filepath,
+				parent : req.session.name,
+				isPlay : '0',
+				isRecevied : '0',
+				createTime : new Date()
+			},(err)=>{
+				if(err){
+					console.log(err);
+					res.end(err);
+					return;
+				}
+				let result = JSON.stringify({"status":1,"message":"到订单中心付款"});
+				res.end(result);
+			});
 	}
 }
 
@@ -149,7 +175,6 @@ exports.orderlist = (req,res)=>{
 	let username = req.session.name;
 	//通过用户名把订单内容拿出来，渲染到页面上
 	orderModel.find({parent:username},(err,data)=>{
-
 		res.render(path.join(__dirname,'../views/orderlist.html'),{data:data},(err,content)=>{
 			if(err){
 				console.log(err);
@@ -160,4 +185,84 @@ exports.orderlist = (req,res)=>{
 		});
 	})
 	
+}
+
+exports.orderlistPayment = (req,res)=>{
+	let username = req.session.name;
+	//通过用户名把订单内容拿出来，渲染到页面上
+	orderModel.find({parent:username,isPlay:'0'},(err,data)=>{
+		res.render(path.join(__dirname,'../views/orderlist.html'),{data:data},(err,content)=>{
+			if(err){
+				console.log(err);
+				res.end(err);
+				return;
+			}
+			res.end(content);
+		});
+	})
+}
+
+exports.orderlistConfirmRec = (req,res)=>{
+	let username = req.session.name;
+	//通过用户名把订单内容拿出来，渲染到页面上
+	orderModel.find({parent:username,isPlay:'1',isRecevied:'0'},(err,data)=>{
+		res.render(path.join(__dirname,'../views/orderlist.html'),{data:data},(err,content)=>{
+			if(err){
+				console.log(err);
+				res.end(err);
+				return;
+			}
+			res.end(content);
+		});
+	})
+}
+
+//响应/delOrder请求
+exports.delOrder = (req,res)=>{
+	res.setHeader('Content-Type',"text/html;charset=utf8");
+	let id = querystring.parse(url.parse(req.url).query).id;
+	//根据id删除对应的订单
+	orderModel.remove({_id:id},(err)=>{
+		if(err){
+			console.log(err);
+			res.end(err);
+			return;
+		}
+		let result = JSON.stringify({"status":"1","message":"订单删除成功"});
+		res.end(result);
+	})
+}
+
+//响应/payment请求
+exports.payment = (req,res)=>{
+	res.setHeader('Content-Type',"text/html;charset=utf8");
+	let id = querystring.parse(url.parse(req.url).query).id;
+	console.log(id);
+	//根据id删除对应的订单
+	orderModel.update({_id:id},{isPlay:'1'},(err)=>{
+		if(err){
+			console.log(err);
+			res.end(err);
+			return;
+		}
+		let result = JSON.stringify({"status":"1","message":"订单支付成功"});
+		res.end(result);
+	})
+}
+
+//响应/confirmRec请求
+exports.confirmRec = (req,res)=>{
+	res.setHeader('Content-Type',"text/html;charset=utf8");
+	let id = querystring.parse(url.parse(req.url).query).id;
+	console.log(id);
+	//根据id删除对应的订单
+	orderModel.update({_id:id},{isRecevied:'1'},(err)=>{
+		if(err){
+			console.log(err);
+			res.end(err);
+			return;
+		}
+		let result = JSON.stringify({"status":"1","message":"确认收货成功"});
+		res.end(result);
+	})
 }
