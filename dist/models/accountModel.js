@@ -1,0 +1,1 @@
+"use strict";var mongoose=require("mongoose"),schema=mongoose.Schema({name:String,password:String,email:String,type:String}),model=mongoose.model("userModel",schema);

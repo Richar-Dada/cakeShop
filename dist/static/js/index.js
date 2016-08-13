@@ -1,0 +1,1 @@
+"use strict";function go(){alert("go")}go();

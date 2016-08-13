@@ -1,0 +1,1 @@
+"use strict";var express=require("express"),router=express.Router(),accountController=require("../controllers/accountController.js");router.get("/login",accountController.loginGet),router.post("/login",accountController.loginPost),router.get("/register",accountController.registerGet),router.post("/register",accountController.registerPost),module.exports=router;

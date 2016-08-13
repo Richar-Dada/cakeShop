@@ -13,6 +13,7 @@ body{
     font-family: "microsoft YaHei","sans-serif";/*使用移动端默认的字体*/
     color: #333;
     max-width: 640px;
+    min-width: 320px;
     background: #F7F7F7;
 }
 a{
@@ -140,6 +141,16 @@ input,textarea{
     left: 0.277778rem;
     top: 0;
     margin: auto 0;
+}
+
+.header-wrap .indexBtn{
+    position: absolute;
+    right: 0.555556rem;
+    top: 0;
+    margin: auto 0;
+    color: #fff;
+    
+    font-size: 1.111111rem;
 }
 
 .header-wrap{

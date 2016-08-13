@@ -48,19 +48,16 @@
 .cart-item img{
 	width: 4.444444rem;
 	height: 4.444444rem;
-	vertical-align: middle;
-	display: inline-block;
 	margin-left: 0.555556rem;
 	float: left;
 }
 
 .cart-item .good-info{
-	vertical-align: middle;
-	width: calc(100% - 5.555556rem);
+	overflow: hidden;
+	
 	margin-left: 0.555556rem;
-	display: inline-block;
 	position: relative;
-	float: right;
+	padding: 0 0.555556rem;
 	
 }
 
@@ -87,7 +84,7 @@
 .cart-item .good-info .btn-group{
 	position: absolute;
 	bottom: 0;
-	right: 10%;
+	right: 2.222222rem;
 	text-align: center;
 	
 }

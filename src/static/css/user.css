@@ -1,25 +1,18 @@
 /* user-info begin */
 .user-name{
 	width: 100%;
-	height: 100%;
+	height: 6.666667rem;
 	position: relative;
-	
-}
-
-.user-name img{
-	display: block;
-	width: 100%;
+	text-align: center;
+	background: url('../images/headbg.png') no-repeat;
+	background-size: cover;
+	display: table;
 }
 
 .user-name .info-item{
-	position: absolute;
-	width: 6.111111rem;
-	height: 2.777778rem;
-	margin: auto;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
+	
+	display: table-cell;
+	vertical-align: middle;
 	font-size: 1.333333rem;
 	color:#DB3652;
 

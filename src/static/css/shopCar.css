@@ -25,8 +25,10 @@
 }
 
 .cart-item .checkbox{
-	display: inline-block;
+	display: table-cell;
 	vertical-align: middle;
+	float: left;
+	margin-top: 1.222222rem;
 }
 
 .cart-item img{
@@ -35,13 +37,14 @@
 	vertical-align: middle;
 	display: inline-block;
 	margin-left: 0.555556rem;
+	float: left;
 }
 
 .cart-item .good-info{
 	vertical-align: middle;
-	width: calc(100% - 8.333333rem);
+	overflow: hidden;
 	margin-left: 0.555556rem;
-	display: inline-block;
+	
 	position: relative;
 	
 }
